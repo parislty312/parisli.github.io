@@ -1,0 +1,103 @@
+---
+layout: about
+title: Home
+banner: "/assets/images/banners/yuanpang-wa-sky.jpg"
+---
+
+<style>
+  .profile-home {
+    display: grid;
+    gap: 36px;
+  }
+
+  .profile-home h1 {
+    margin-bottom: 12px;
+  }
+
+  .profile-lede {
+    font-size: 1.15rem;
+    line-height: 1.75;
+  }
+
+  .profile-actions {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 12px;
+  }
+
+  .profile-button {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 42px;
+    padding: 0 16px;
+    border: 1px solid #d7d7d7;
+    border-radius: 6px;
+    font-weight: 700;
+  }
+
+  .profile-button.primary {
+    border-color: #389092;
+    background: #389092;
+    color: #fff;
+  }
+
+  .profile-grid {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 18px;
+  }
+
+  .profile-card {
+    padding: 20px;
+    border: 1px solid #e8e8e8;
+    border-radius: 8px;
+  }
+
+  .profile-card h3 {
+    margin-top: 0;
+  }
+
+  @media (max-width: 760px) {
+    .profile-grid {
+      grid-template-columns: 1fr;
+    }
+  }
+</style>
+
+<div class="profile-home">
+  <section>
+    <h1>Tingyu Paris Li</h1>
+    <p class="profile-lede">
+      Senior Systems Architect and AI Product Strategy leader with 10+ years of experience building scalable systems,
+      AI-driven platforms, and compliance infrastructure for global consumer products.
+    </p>
+    <div class="profile-actions">
+      <a class="profile-button primary" href="{{ site.baseurl }}/assets/files/tingyu-paris-li-resume.pdf">Download Resume</a>
+      <a class="profile-button" href="mailto:ltylitingyu312@gmail.com">Email</a>
+      <a class="profile-button" href="https://www.linkedin.com/in/tingyu-paris-li/" target="_blank" rel="noopener noreferrer">LinkedIn</a>
+    </div>
+  </section>
+
+  <section>
+    <h2>Focus Areas</h2>
+    <div class="profile-grid">
+      <div class="profile-card">
+        <h3>AI Productization</h3>
+        <p>Turning emerging AI capabilities into reliable, production-ready experiences through system design, evaluation frameworks, and trust mechanisms.</p>
+      </div>
+      <div class="profile-card">
+        <h3>Platform Architecture</h3>
+        <p>Designing modular platforms, APIs, orchestration, routing, ranking, and workflow systems for multi-org adoption.</p>
+      </div>
+      <div class="profile-card">
+        <h3>Compliance Infrastructure</h3>
+        <p>Building systems for regulatory integrity, business integrity, human review, and safe global product launches.</p>
+      </div>
+      <div class="profile-card">
+        <h3>Cross-Org Leadership</h3>
+        <p>Leading ambiguous, high-stakes work across product, engineering, legal, operations, tooling, and stakeholder groups.</p>
+      </div>
+    </div>
+  </section>
+</div>
