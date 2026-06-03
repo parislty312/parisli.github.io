@@ -149,7 +149,7 @@ yat:
 header_pages:
   - index.html
   - about.html
-  - resume.html
+  - technical-blog.html
 
 # Page default value
 defaults:
