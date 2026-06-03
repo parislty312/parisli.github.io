@@ -7,6 +7,11 @@ banner: "/assets/images/banners/home-banner.png"
 ---
 
 <style>
+  .page-banner-heading {
+    font-size: 2.65rem !important;
+    white-space: nowrap;
+  }
+
   .profile-home {
     display: grid;
     gap: 36px;
@@ -61,8 +66,19 @@ banner: "/assets/images/banners/home-banner.png"
   }
 
   @media (max-width: 760px) {
+    .page-banner-heading {
+      font-size: 2rem !important;
+      white-space: normal;
+    }
+
     .profile-grid {
       grid-template-columns: 1fr;
+    }
+  }
+
+  @media (min-width: 761px) and (max-width: 1100px) {
+    .page-banner-heading {
+      font-size: 2rem !important;
     }
   }
 </style>
@@ -98,6 +114,14 @@ banner: "/assets/images/banners/home-banner.png"
       <div class="profile-card">
         <h3>Cross-Org Leadership</h3>
         <p>Leading ambiguous, high-stakes work across product, engineering, legal, operations, tooling, and stakeholder groups.</p>
+      </div>
+      <div class="profile-card">
+        <h3>Monetization &amp; Payment Products</h3>
+        <p>Architecting creator monetization and enterprise payment ecosystems across digital wallets, tokenized payments, loyalty programs, and PCI-DSS compliance.</p>
+      </div>
+      <div class="profile-card">
+        <h3>Customer-Facing Communication</h3>
+        <p>Translating complex technical capabilities into clear customer solutions through discovery, technical consulting, solution design, and executive storytelling.</p>
       </div>
     </div>
   </section>
