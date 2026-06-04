@@ -1,0 +1,501 @@
+---
+layout: post
+title: "Why your AI needs a team, not a generalist"
+subtitle: "A product manager's guide to orchestrating agent teams"
+date: 2026-06-03 17:34:00 -0700
+categories: [AI Product Strategy]
+tags: [AI Systems, Agent Orchestration, Product Thinking]
+permalink: /technical-blog/orchestrating-agent-teams.html
+excerpt: "A product manager's guide to breaking AI workflows apart, coordinating specialist agents, and building systems that improve themselves."
+hidden: [header, navigator, related_posts, comments]
+---
+
+<style>
+    .agent-article, .agent-article *, .agent-article *::before, .agent-article *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    .agent-article {
+      --accent: #1D9E75;
+      --accent-light: #E1F5EE;
+      --accent-mid: #0F6E56;
+      --accent-dark: #085041;
+      --text-primary: #1a1a18;
+      --text-secondary: #4a4a46;
+      --text-tertiary: #888780;
+      --bg: #fafaf8;
+      --bg-secondary: #f3f2ee;
+      --border: rgba(0,0,0,0.10);
+      --border-strong: rgba(0,0,0,0.18);
+      --info-bg: #EBF4FF;
+      --info-border: #B5D4F4;
+      --info-text: #0C447C;
+      --radius-md: 8px;
+      --radius-lg: 8px;
+    }
+
+    .agent-article {
+      font-family: 'DM Sans', system-ui, sans-serif;
+      background: var(--bg);
+      color: var(--text-primary);
+      font-size: 17px;
+      line-height: 1.8;
+      padding: 0 1rem;
+    }
+
+    .agent-article {
+      max-width: 680px;
+      margin: 0 auto;
+      padding: 4rem 1rem 5rem;
+    }
+
+    html[data-theme="dark"] .agent-article {
+      --text-primary: #f0f1f1;
+      --text-secondary: #c6c9ca;
+      --text-tertiary: #9da2a4;
+      --bg: #202426;
+      --bg-secondary: #292e30;
+      --border: rgba(255,255,255,0.14);
+      --border-strong: rgba(255,255,255,0.24);
+      --accent-light: #173f35;
+      --accent-mid: #75c5bd;
+      --accent-dark: #b7e7db;
+      --info-bg: #202f3d;
+      --info-border: #365b78;
+      --info-text: #b9d9f4;
+    }
+
+    .agent-article .kicker {
+      font-size: 11.5px;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: var(--accent);
+      font-weight: 500;
+      margin-bottom: 1rem;
+    }
+
+    .agent-article h1.blog-title {
+      font-family: 'Lora', Georgia, serif;
+      font-size: 38px;
+      font-weight: 500;
+      line-height: 1.2;
+      margin: 0 0 1.1rem;
+      color: var(--text-primary);
+      letter-spacing: -0.01em;
+    }
+
+    .agent-article .subtitle {
+      font-size: 18px;
+      color: var(--text-secondary);
+      margin: 0 0 1.75rem;
+      line-height: 1.65;
+    }
+
+    .agent-article .meta {
+      font-size: 13px;
+      color: var(--text-tertiary);
+      border-top: 0.5px solid var(--border);
+      border-bottom: 0.5px solid var(--border);
+      padding: 0.75rem 0;
+      margin-bottom: 2.5rem;
+      display: flex;
+      gap: 1.75rem;
+    }
+
+    .agent-article p { margin: 0 0 1.1rem; }
+
+    .agent-article h2.section-title {
+      font-family: 'Lora', Georgia, serif;
+      font-size: 24px;
+      font-weight: 500;
+      margin: 3rem 0 0.85rem;
+      color: var(--text-primary);
+      padding-top: 2rem;
+      border-top: 0.5px solid var(--border);
+      letter-spacing: -0.01em;
+    }
+
+    .agent-article h3.sub-title {
+      font-size: 17px;
+      font-weight: 500;
+      margin: 1.75rem 0 0.5rem;
+      color: var(--text-primary);
+    }
+
+    .agent-article .pull-quote {
+      border-left: 3px solid var(--accent);
+      padding: 0.85rem 1.4rem;
+      margin: 2rem 0;
+      background: var(--accent-light);
+      border-radius: 0 var(--radius-md) var(--radius-md) 0;
+      font-family: 'Lora', Georgia, serif;
+      font-style: italic;
+      font-size: 16.5px;
+      color: var(--accent-dark);
+      line-height: 1.65;
+    }
+
+    .agent-article .pattern-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(145px, 1fr));
+      gap: 10px;
+      margin: 1.5rem 0;
+    }
+
+    .agent-article .pattern-card {
+      background: var(--bg-secondary);
+      border: 0.5px solid var(--border);
+      border-radius: var(--radius-lg);
+      padding: 1rem 1.1rem;
+    }
+
+    .agent-article .pattern-card .pname {
+      font-size: 13px;
+      font-weight: 500;
+      color: var(--accent-mid);
+      margin-bottom: 5px;
+    }
+
+    .agent-article .pattern-card .pflow {
+      font-size: 12px;
+      font-family: 'Courier New', monospace;
+      color: var(--text-tertiary);
+      background: white;
+      border-radius: 4px;
+      padding: 3px 7px;
+      display: inline-block;
+      border: 0.5px solid var(--border);
+    }
+
+    .agent-article .pattern-card .pdesc {
+      font-size: 13px;
+      color: var(--text-secondary);
+      line-height: 1.55;
+      margin-top: 8px;
+    }
+
+    .agent-article .channel-table {
+      width: 100%;
+      border-collapse: collapse;
+      border: 0.5px solid var(--border);
+      border-radius: var(--radius-md);
+      overflow: hidden;
+      margin: 1.5rem 0;
+      font-size: 14px;
+    }
+
+    .agent-article .channel-table thead th {
+      background: var(--bg-secondary);
+      font-size: 11.5px;
+      font-weight: 500;
+      text-transform: uppercase;
+      letter-spacing: 0.09em;
+      color: var(--text-tertiary);
+      padding: 9px 14px;
+      text-align: left;
+      border-bottom: 0.5px solid var(--border);
+    }
+
+    .agent-article .channel-table tbody td {
+      padding: 11px 14px;
+      border-bottom: 0.5px solid var(--border);
+      color: var(--text-secondary);
+      line-height: 1.45;
+      vertical-align: top;
+    }
+
+    .agent-article .channel-table tbody tr:last-child td { border-bottom: none; }
+
+    .agent-article .channel-table .ch-name {
+      font-weight: 500;
+      color: var(--text-primary);
+    }
+
+    .agent-article .insight-box {
+      border: 0.5px solid var(--info-border);
+      background: var(--info-bg);
+      border-radius: var(--radius-lg);
+      padding: 1rem 1.25rem;
+      margin: 2rem 0;
+    }
+
+    .agent-article .insight-box .ilabel {
+      font-size: 11.5px;
+      font-weight: 500;
+      text-transform: uppercase;
+      letter-spacing: 0.09em;
+      color: var(--info-text);
+      margin-bottom: 6px;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    .agent-article .insight-box p {
+      margin: 0;
+      font-size: 14.5px;
+      color: var(--info-text);
+      line-height: 1.65;
+    }
+
+    .agent-article .loop-steps {
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+      margin: 1.25rem 0 1.75rem;
+    }
+
+    .agent-article .loop-step {
+      display: flex;
+      align-items: flex-start;
+      gap: 14px;
+    }
+
+    .agent-article .step-num {
+      min-width: 30px;
+      height: 30px;
+      border-radius: 50%;
+      background: var(--accent-light);
+      color: var(--accent-mid);
+      font-size: 13px;
+      font-weight: 500;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin-top: 2px;
+      flex-shrink: 0;
+    }
+
+    .agent-article .step-body {
+      font-size: 15.5px;
+      color: var(--text-secondary);
+      line-height: 1.65;
+      padding-top: 3px;
+    }
+
+    .agent-article .step-body strong {
+      color: var(--text-primary);
+      font-weight: 500;
+    }
+
+    .agent-article .closing {
+      border-top: 0.5px solid var(--border);
+      margin-top: 3rem;
+      padding-top: 1.75rem;
+      font-size: 15.5px;
+      color: var(--text-secondary);
+    }
+
+    .agent-article .closing p { margin-bottom: 0.85rem; }
+
+    .agent-article .closing p:last-child {
+      font-family: 'Lora', Georgia, serif;
+      font-style: italic;
+      color: var(--text-primary);
+      font-size: 17px;
+    }
+
+    @media (max-width: 500px) {
+      .agent-article h1.blog-title { font-size: 28px; }
+      .agent-article .pattern-grid { grid-template-columns: 1fr 1fr; }
+      .agent-article .meta {
+        flex-wrap: wrap;
+        gap: 0.35rem 1rem;
+      }
+
+      .agent-article .channel-table {
+        display: block;
+        overflow-x: auto;
+        white-space: normal;
+      }
+
+      .agent-article .channel-table th,
+      .agent-article .channel-table td {
+        min-width: 145px;
+      }
+    }
+  </style>
+<div class="agent-article">
+
+    <div class="kicker">AI Product Strategy</div>
+    <h1 class="blog-title">Why your AI needs a team, not a generalist</h1>
+    <p class="subtitle">A product manager's guide to orchestrating agent teams — breaking workflows apart, coordinating specialists, and building systems that improve themselves.</p>
+    <div class="meta">
+      <span>June 2026</span>
+      <span>10 min read</span>
+      <span>AI Systems · Product Thinking</span>
+    </div>
+
+    <p>Imagine hiring one person and asking them to conduct user research, write the PRD, review the engineering spec, draft the marketing copy, and QA the release — all in a single session. The output degrades at every stage. Not because the person is bad, but because sustained generalism is a quality tax.</p>
+
+    <p>The same is true for AI agents. And the fix is the same one we've used for decades in product and engineering: <strong>specialization</strong>.</p>
+
+    <div class="pull-quote">"A single agent handling multiple workflow stages hits a generalist ceiling — quality degrades due to compounding probabilistic drift. The shift from operator to conductor means designing systems of agents, not guiding individual conversations."</div>
+
+    <h2 class="section-title">The generalist ceiling: what it means for PMs</h2>
+
+    <p>In AI systems, every stage of a multi-step workflow introduces probabilistic drift — small errors that compound. A single agent managing five sequential stages doesn't just make five independent errors; it makes five <em>interdependent</em> errors, each building on the last.</p>
+
+    <p>As PMs, we recognize this pattern immediately: it's the same reason we don't ask one engineer to own infra, backend, frontend, and QA on the same sprint. Cognitive load isn't additive — it's multiplicative.</p>
+
+    <p>The solution is <strong>agent orchestration</strong>: decomposing a workflow into specialized stages and assigning a dedicated agent to each one. Think of it as applying the principle of single responsibility — but to your AI workforce.</p>
+
+    <div class="insight-box">
+      <div class="ilabel">💡 PM framing</div>
+      <p>The shift isn't "how do I prompt this agent better?" — it's "how do I design a system where each agent is set up to succeed?" That's the conductor mindset: you're building the orchestra, not playing every instrument.</p>
+    </div>
+
+    <h2 class="section-title">Is your workflow ready for orchestration?</h2>
+
+    <p>Not every workflow needs a multi-agent system. Before decomposing anything, run a quick qualification check. Orchestration-ready workflows typically fall into one of two buckets:</p>
+
+    <h3 class="sub-title">Bucket 1 — simple and repetitive</h3>
+    <p>Tasks you'd hand to an apprentice: sorting data, checking formatting, flagging past-due items. Low cognitive complexity, high volume, clear acceptance criteria. These are ideal candidates because specialization here means speed and consistency, not just quality.</p>
+
+    <h3 class="sub-title">Bucket 2 — high-volume at scale</h3>
+    <p>Tasks that are impossible for humans at scale: auditing hundreds of assets weekly, monitoring dozens of competitors daily, processing thousands of support tickets. The value isn't just automation — it's enabling operations that simply couldn't exist before.</p>
+
+    <p>If your workflow doesn't fit either bucket, start simpler. A well-prompted single agent beats an over-engineered multi-agent system every time.</p>
+
+    <h2 class="section-title">Four orchestration patterns — and when to use each</h2>
+
+    <p>Once you've confirmed the workflow is worth decomposing, you need to pick a structural pattern. Think of these as architectural primitives — the same way you'd choose between a monolith, microservices, or event-driven design before writing a line of code.</p>
+
+    <div class="pattern-grid">
+      <div class="pattern-card">
+        <div class="pname">Pipeline</div>
+        <div class="pflow">A → B → C</div>
+        <div class="pdesc">Linear handoffs where each stage depends on the last. Best for: BI briefings — collect, analyze, report.</div>
+      </div>
+      <div class="pattern-card">
+        <div class="pname">Hub &amp; spoke</div>
+        <div class="pflow">Coord → Spokes</div>
+        <div class="pdesc">A coordinator dispatches to specialized sub-agents. Best for: PM routing tasks across research, legal, and finance.</div>
+      </div>
+      <div class="pattern-card">
+        <div class="pname">Parallel</div>
+        <div class="pflow">A + B + C</div>
+        <div class="pdesc">Multiple agents run simultaneously. Best for: breadth — e.g. three agents researching three competitors at once.</div>
+      </div>
+      <div class="pattern-card">
+        <div class="pname">Review loop</div>
+        <div class="pflow">Producer ↔ Eval</div>
+        <div class="pdesc">A drafting agent paired with an evaluator. Best for: critical outputs that need editorial or QA review.</div>
+      </div>
+    </div>
+
+    <p>There's also a fifth pattern worth noting: the <strong>Foundation Agent</strong>. Instead of building each specialized agent from scratch, you create a broadly capable base agent — think of it like a platform team — and then extend it with domain-specific skills. A Finance agent and a Marketing agent might both build on the same Data Team foundation, inheriting its knowledge rather than duplicating it.</p>
+
+    <div class="insight-box">
+      <div class="ilabel">🔁 Product analogy</div>
+      <p>The Foundation Agent pattern is the AI equivalent of a platform team. Specialized agents are the product squads. Shared institutional knowledge doesn't need to be rebuilt every time you spin up a new capability — it's inherited.</p>
+    </div>
+
+    <h2 class="section-title">Shared context: agents don't share a brain</h2>
+
+    <p>Here's where most early multi-agent implementations break down: people assume that because agents run in the same system, they share context. They don't. Each agent is effectively stateless between invocations unless you deliberately design the communication layer.</p>
+
+    <p>There are four mechanisms for inter-agent communication, each suited to different kinds of information:</p>
+
+    <table class="channel-table">
+      <thead>
+        <tr>
+          <th>Channel</th>
+          <th>Best for</th>
+          <th>PM analogy</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td class="ch-name">Documents</td>
+          <td>Narrative analysis, written briefs, reports</td>
+          <td>A well-written PRD passed from strategy to engineering</td>
+        </tr>
+        <tr>
+          <td class="ch-name">Tables</td>
+          <td>Structured data, tracking, metrics</td>
+          <td>A shared roadmap spreadsheet the whole team reads</td>
+        </tr>
+        <tr>
+          <td class="ch-name">Memories</td>
+          <td>Context, company facts, user preferences</td>
+          <td>Your team's internal wiki — always available, never re-explained</td>
+        </tr>
+        <tr>
+          <td class="ch-name">Skills</td>
+          <td>API scripts, reusable capabilities</td>
+          <td>A shared component library — write once, use everywhere</td>
+        </tr>
+      </tbody>
+    </table>
+
+    <p>There's also a fifth element — <strong>rubrics</strong> — which function as acceptance criteria before a handoff. Before an agent passes its output to the next stage, it checks its own work against a rubric. This is the AI equivalent of a definition of done. It catches quality issues before they compound downstream.</p>
+
+    <div class="pull-quote">"The right channel isn't the one that technically works — it's the one that makes the next agent's job easier. Design handoffs like you design APIs: specify the contract, not just the capability."</div>
+
+    <h2 class="section-title">Automation: from orchestrated to self-running</h2>
+
+    <p>Designing the agent team is the architecture phase. Automation is the deployment phase. Once your agents are coordinated, you wire them together with triggers and schedules so the system runs without human initiation.</p>
+
+    <p>Three automation primitives cover most real-world scenarios:</p>
+
+    <div class="loop-steps">
+      <div class="loop-step">
+        <div class="step-num">1</div>
+        <div class="step-body"><strong>Scheduled invocations</strong> — agents run at fixed times, offset to allow upstream stages to complete. Pipeline agents stagger at 6:00, 6:30, 7:00 AM so each stage has its inputs ready.</div>
+      </div>
+      <div class="loop-step">
+        <div class="step-num">2</div>
+        <div class="step-body"><strong>Slack triggers</strong> — a message or command fires an agent on demand. This is how humans stay in the loop without becoming the bottleneck: they trigger, the agent executes.</div>
+      </div>
+      <div class="loop-step">
+        <div class="step-num">3</div>
+        <div class="step-body"><strong>Sequential chaining</strong> — the completion of one agent automatically triggers the next. No polling, no manual handoffs. The pipeline becomes genuinely autonomous.</div>
+      </div>
+    </div>
+
+    <p>The most powerful combination is <strong>parallel collection + sequential synthesis</strong>: multiple agents gather data simultaneously from different sources (breadth-first), then a single analyst agent synthesizes everything into a unified output. This is the pattern behind daily competitive intelligence briefings, weekly performance digests, and monthly board-ready summaries.</p>
+
+    <h2 class="section-title">The self-improvement loop: the part most PMs miss</h2>
+
+    <p>Here's what separates a well-built agent system from a great one: the system generates its own improvement signals as it runs.</p>
+
+    <p>Every error, repeated question, and corrected output is a data point. The operational discipline is to capture those signals and feed them back into the system:</p>
+
+    <div class="loop-steps">
+      <div class="loop-step">
+        <div class="step-num">↩</div>
+        <div class="step-body"><strong>Corrections</strong> become memories — so the same mistake doesn't repeat next week.</div>
+      </div>
+      <div class="loop-step">
+        <div class="step-num">⚙</div>
+        <div class="step-body"><strong>Repeated patterns</strong> get hard-coded into new skills — reducing per-run token cost and latency.</div>
+      </div>
+      <div class="loop-step">
+        <div class="step-num">🗺</div>
+        <div class="step-body"><strong>User questions</strong> reveal gaps — each one is a potential capability on your agent roadmap.</div>
+      </div>
+    </div>
+
+    <p>This is the compounding return on agent orchestration. The system doesn't just run — it gets better at running. Every week of operation is a week of implicit training data that makes the next week cheaper, faster, and more accurate.</p>
+
+    <h2 class="section-title">The PM takeaway: three mental shifts</h2>
+
+    <div class="loop-steps" style="margin-top:0.75rem">
+      <div class="loop-step">
+        <div class="step-num">1</div>
+        <div class="step-body"><strong>From prompter to architect.</strong> Stop optimizing individual agent conversations. Start designing the system of agents, the communication contracts between them, and the quality gates at each handoff.</div>
+      </div>
+      <div class="loop-step">
+        <div class="step-num">2</div>
+        <div class="step-body"><strong>From output to workflow.</strong> The question isn't "did this agent produce good output?" It's "did this stage set up the next stage to succeed?" Evaluate handoffs, not just results.</div>
+      </div>
+      <div class="loop-step">
+        <div class="step-num">3</div>
+        <div class="step-body"><strong>From tool to team.</strong> Multi-agent systems behave like teams — they need clear roles, explicit communication channels, shared context, and feedback loops. Manage them like you'd manage people.</div>
+      </div>
+    </div>
+
+    <div class="closing">
+      <p>The companies that figure this out early won't just automate existing workflows — they'll build capabilities that were never possible at human scale. That's the real opportunity. Not replacing the analyst, but enabling ten analysts worth of output with one thoughtfully designed agent team.</p>
+      <p>The conductor doesn't play every instrument. They design the performance.</p>
+    </div>
+</div>

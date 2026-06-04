@@ -7,39 +7,96 @@ banner: "/assets/images/banners/yuanpang-wa-sky.jpg"
 <style>
   .blog-page {
     display: grid;
-    gap: 28px;
+    gap: 52px;
   }
 
   .blog-lede {
+    max-width: 720px;
+    margin-bottom: 0;
     font-size: 1.12rem;
     line-height: 1.75;
   }
 
-  .blog-grid {
+  .blog-section-heading {
     display: grid;
-    grid-template-columns: repeat(2, minmax(0, 1fr));
+    grid-template-columns: minmax(180px, 0.55fr) minmax(300px, 1.45fr);
+    gap: 40px;
+    align-items: end;
+    margin-bottom: 24px;
+  }
+
+  .blog-section-heading h2 {
+    margin: 0;
+  }
+
+  .blog-section-heading p {
+    margin: 0;
+    color: #62686d;
+    line-height: 1.7;
+  }
+
+  .blog-list {
+    display: grid;
     gap: 18px;
   }
 
-  .blog-card {
-    padding: 20px;
+  .blog-post-card {
+    display: grid;
+    grid-template-columns: minmax(150px, 0.35fr) minmax(300px, 1.65fr);
+    gap: 28px;
+    padding: 26px;
     border: 1px solid #e8e8e8;
+    border-left: 3px solid #389092;
     border-radius: 8px;
+    color: inherit;
+    text-decoration: none;
+    transition: border-color 0.18s ease, transform 0.18s ease;
   }
 
-  .blog-card h3 {
-    margin-top: 0;
+  .blog-post-card:hover {
+    border-color: #b8cdca;
+    color: inherit;
+    text-decoration: none;
+    transform: translateY(-2px);
   }
 
-  .blog-note {
-    padding: 18px 20px;
-    border-left: 4px solid #389092;
-    background: rgba(56, 144, 146, 0.08);
+  .blog-post-meta {
+    color: #267a78;
+    font-size: 0.82rem;
+    font-weight: 700;
+    line-height: 1.6;
+  }
+
+  .blog-post-card h3 {
+    margin: 0 0 8px;
+    font-size: 1.35rem;
+  }
+
+  .blog-post-card p {
+    margin: 0;
+    color: #62686d;
+    line-height: 1.65;
+  }
+
+  html[data-theme="dark"] .blog-section-heading p,
+  html[data-theme="dark"] .blog-post-card p {
+    color: #c2c5c7;
+  }
+
+  html[data-theme="dark"] .blog-post-card {
+    border-color: #4b4e50;
+    border-left-color: #75c5bd;
   }
 
   @media (max-width: 760px) {
-    .blog-grid {
+    .blog-page {
+      gap: 42px;
+    }
+
+    .blog-section-heading,
+    .blog-post-card {
       grid-template-columns: 1fr;
+      gap: 14px;
     }
   }
 </style>
@@ -53,30 +110,24 @@ banner: "/assets/images/banners/yuanpang-wa-sky.jpg"
     </p>
   </section>
 
-  <section>
-    <h2>Writing Areas</h2>
-    <div class="blog-grid">
-      <article class="blog-card">
-        <h3>Applied AI Systems</h3>
-        <p>Model-to-product integration, AI evaluation, human review workflows, and trust mechanisms.</p>
-      </article>
-      <article class="blog-card">
-        <h3>Platform Architecture</h3>
-        <p>APIs, orchestration, routing, ranking, modular workflow systems, and system migration strategy.</p>
-      </article>
-      <article class="blog-card">
-        <h3>Compliance Infrastructure</h3>
-        <p>Global regulatory systems, business integrity tooling, operational governance, and launch readiness.</p>
-      </article>
-      <article class="blog-card">
-        <h3>Product Strategy</h3>
-        <p>Cross-org execution, ambiguity management, automation enablement, and stakeholder alignment.</p>
-      </article>
+  <section aria-labelledby="latest-writing">
+    <div class="blog-section-heading">
+      <h2 id="latest-writing">Latest Writing</h2>
+      <p>Practical notes on designing AI systems, product workflows, and the operating models around them.</p>
     </div>
-  </section>
-
-  <section class="blog-note">
-    <strong>Coming soon:</strong> This section is ready for original technical posts. Template posts are preserved in
-    <code>template_posts/</code> for reference, but they are excluded from the live site.
+    <div class="blog-list">
+      {% for post in site.posts %}
+        <a class="blog-post-card" href="{{ post.url | relative_url }}">
+          <div class="blog-post-meta">
+            <time datetime="{{ post.date | date_to_xmlschema }}">{{ post.date | date: "%B %Y" }}</time>
+            <div>{{ post.tags | join: " / " }}</div>
+          </div>
+          <div>
+            <h3>{{ post.title }}</h3>
+            <p>{{ post.excerpt | strip_html | strip_newlines }}</p>
+          </div>
+        </a>
+      {% endfor %}
+    </div>
   </section>
 </div>
