@@ -1,0 +1,22 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" role="img" aria-labelledby="title">
+  <title id="title">Tingyu Paris Li monogram</title>
+  <rect width="100" height="100" rx="20" fill="#17202a"/>
+  <path
+    d="M28 76V25h24c15 0 24 8 24 20s-9 20-24 20H28"
+    fill="none"
+    stroke="#57b7ae"
+    stroke-linecap="round"
+    stroke-linejoin="round"
+    stroke-width="9"
+  />
+  <path
+    d="M58 58v18h20"
+    fill="none"
+    stroke="#f1a17b"
+    stroke-linecap="round"
+    stroke-linejoin="round"
+    stroke-width="9"
+  />
+  <circle cx="28" cy="25" r="4.5" fill="#ffffff"/>
+  <circle cx="78" cy="76" r="4.5" fill="#ffffff"/>
+</svg>
