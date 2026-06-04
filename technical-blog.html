@@ -124,7 +124,7 @@ banner: "/assets/images/banners/yuanpang-wa-sky.jpg"
           </div>
           <div>
             <h3>{{ post.title }}</h3>
-            <p>{{ post.excerpt | strip_html | strip_newlines }}</p>
+            <p>{{ post.summary | default: post.excerpt | strip_html | strip_newlines }}</p>
           </div>
         </a>
       {% endfor %}
