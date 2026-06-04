@@ -1,12 +1,26 @@
 ---
 layout: about
 title: Life
-heading: "Life Beyond Systems"
+heading: "Life Beyond Work"
 subheading: "Everyday moments, curious detours, and the experiences that shape how I see the world."
 banner: "/assets/images/banners/home-cover.jpeg"
 ---
 
 <style>
+  .page-banner .post-title {
+    color: #ffc857;
+    font-weight: 700;
+    text-shadow: 0 2px 10px rgba(30, 48, 66, 0.34);
+  }
+
+  .page-banner .post-subtitle {
+    color: #fff8e8;
+  }
+
+  .page-banner .post-meta {
+    display: none;
+  }
+
   .life-page {
     display: grid;
     gap: 72px;
@@ -28,6 +42,7 @@ banner: "/assets/images/banners/home-cover.jpeg"
   .life-feature-photo {
     aspect-ratio: 16 / 11;
     overflow: hidden;
+    border: 4px solid #f3b64c;
     border-radius: 12px;
   }
 
@@ -41,7 +56,7 @@ banner: "/assets/images/banners/home-cover.jpeg"
 
   .life-kicker {
     margin: 0 0 10px;
-    color: #a25d40;
+    color: #d57a24;
     font-size: 0.78rem;
     font-weight: 800;
     letter-spacing: 0.08em;
@@ -55,6 +70,7 @@ banner: "/assets/images/banners/home-cover.jpeg"
   }
 
   .life-intro h1 {
+    color: #176f72;
     font-size: 2.35rem;
   }
 
@@ -93,13 +109,47 @@ banner: "/assets/images/banners/home-cover.jpeg"
     min-height: 230px;
     padding: 24px;
     border: 1px solid #e4e5e5;
-    border-top: 3px solid #389092;
+    border-top: 4px solid #efaa3c;
     border-radius: 8px;
+    background: rgba(255, 248, 227, 0.5);
+    transition: border-color 0.18s ease, transform 0.18s ease;
   }
 
   .life-interest-card i {
-    color: #a25d40;
+    display: inline-flex;
+    width: 38px;
+    height: 38px;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+    background: #fff0c2;
+    color: #b9661b;
     font-size: 1.25rem;
+  }
+
+  .life-interest-card:nth-child(2) {
+    border-top-color: #65a67a;
+    background: rgba(232, 246, 234, 0.56);
+  }
+
+  .life-interest-card:nth-child(2) i {
+    background: #dcefdc;
+    color: #477f58;
+  }
+
+  .life-interest-card:nth-child(3) {
+    border-top-color: #5b9fc6;
+    background: rgba(232, 243, 249, 0.58);
+  }
+
+  .life-interest-card:nth-child(3) i {
+    background: #dcecf6;
+    color: #367da5;
+  }
+
+  .life-interest-card:hover {
+    border-color: #c9cece;
+    transform: translateY(-2px);
   }
 
   .life-interest-card h3 {
@@ -127,11 +177,23 @@ banner: "/assets/images/banners/home-cover.jpeg"
   }
 
   .life-milestone-label {
-    color: #267a78;
+    padding-left: 14px;
+    border-left: 4px solid #efaa3c;
+    color: #b9661b;
     font-size: 0.82rem;
     font-weight: 800;
     letter-spacing: 0.06em;
     text-transform: uppercase;
+  }
+
+  .life-milestone:nth-child(2) .life-milestone-label {
+    border-left-color: #65a67a;
+    color: #477f58;
+  }
+
+  .life-milestone:nth-child(3) .life-milestone-label {
+    border-left-color: #5b9fc6;
+    color: #367da5;
   }
 
   .life-milestone h3 {
@@ -154,7 +216,22 @@ banner: "/assets/images/banners/home-cover.jpeg"
 
   html[data-theme="dark"] .life-interest-card {
     border-color: #4b4e50;
-    border-top-color: #75c5bd;
+    border-top-color: #efb657;
+    background: rgba(239, 182, 87, 0.05);
+  }
+
+  html[data-theme="dark"] .life-interest-card:nth-child(2) {
+    border-top-color: #82bf91;
+    background: rgba(130, 191, 145, 0.05);
+  }
+
+  html[data-theme="dark"] .life-interest-card:nth-child(3) {
+    border-top-color: #75b5d8;
+    background: rgba(117, 181, 216, 0.05);
+  }
+
+  html[data-theme="dark"] .life-intro h1 {
+    color: #83cbc6;
   }
 
   html[data-theme="dark"] .life-milestones,
