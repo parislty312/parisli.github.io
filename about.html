@@ -21,10 +21,18 @@ banner: "/assets/images/banners/yuanpang-wa-sky.jpg"
         align-items: start;
     }
 
-    .about-hero-photo img {
-        width: 100%;
-        height: auto;
+    .about-hero-photo {
+        aspect-ratio: 4 / 5;
+        overflow: hidden;
         border-radius: 12px;
+    }
+
+    .about-hero-photo img {
+        display: block;
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        object-position: center 42%;
     }
 
     .about-hero-intro p {
