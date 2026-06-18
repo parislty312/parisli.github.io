@@ -2,7 +2,7 @@
 layout: about
 title: Projects
 heading: "Projects"
-subheading: "Selected systems, product platforms, and writing projects that show how I turn ambiguous ideas into usable experiences."
+subheading: "Selected GitHub projects across AI assistants, multi-agent systems, job search tooling, and creative experiments."
 banner: "/assets/images/banners/home-banner.png"
 ---
 
@@ -138,6 +138,16 @@ banner: "/assets/images/banners/home-banner.png"
     text-decoration: none;
   }
 
+  .project-title-link {
+    color: inherit;
+    text-decoration: none;
+  }
+
+  .project-title-link:hover {
+    color: #267a78;
+    text-decoration: none;
+  }
+
   .projects-note {
     padding: 22px 24px;
     border-left: 4px solid #efaa3c;
@@ -187,83 +197,122 @@ banner: "/assets/images/banners/home-banner.png"
   <section class="projects-intro">
     <div>
       <p class="projects-kicker">Selected Work</p>
-      <h1>Projects at the intersection of AI, platforms, and product systems.</h1>
+      <h1>Featured GitHub projects.</h1>
     </div>
     <p>
-      I am drawn to projects where the hard part is not only building the technology, but shaping the operating
-      model around it: roles, workflows, evaluation, communication, and trust.
+      A collection of hands-on projects that explore AI assistants, multi-agent orchestration, applied product
+      workflows, and creative technical experiments.
     </p>
   </section>
 
   <section class="projects-grid" aria-label="Selected projects">
     <article class="project-card">
       <div class="project-meta">
-        <div class="project-index">01 / AI Systems</div>
+        <div class="project-index">01 / AI Companion</div>
         <div class="project-tags">
-          <span class="project-tag">AI workflows</span>
-          <span class="project-tag">Evaluation</span>
+          <span class="project-tag">Recommendations</span>
+          <span class="project-tag">Retrieval</span>
+          <span class="project-tag">Podcasts</span>
+        </div>
+      </div>
+      <div>
+        <h2>
+          <a class="project-title-link" href="https://github.com/parislty312/commutecast" target="_blank" rel="noopener noreferrer">CommuteCast</a>
+        </h2>
+        <p>
+          An AI podcast companion that figures out what you should listen to on the way to work so your brain
+          does not have to.
+        </p>
+        <ul class="project-points">
+          <li>Turns commute mood, time, and free-form intent into explainable listening recommendations.</li>
+          <li>Explores content pipelines, retrieval logic, and LLM-assisted reasoning for everyday decisions.</li>
+          <li>Built as a product experiment around lightweight personalization and recommendation UX.</li>
+        </ul>
+        <a class="project-link" href="https://github.com/parislty312/commutecast" target="_blank" rel="noopener noreferrer">
+          View on GitHub <i class="fa fa-github" aria-hidden="true"></i>
+        </a>
+      </div>
+    </article>
+
+    <article class="project-card">
+      <div class="project-meta">
+        <div class="project-index">02 / Multi-Agent Systems</div>
+        <div class="project-tags">
           <span class="project-tag">Compliance</span>
+          <span class="project-tag">Audit</span>
+          <span class="project-tag">FastAPI</span>
         </div>
       </div>
       <div>
-        <h2>AI-Enhanced Review Workflow Platform</h2>
+        <h2>
+          <a class="project-title-link" href="https://github.com/parislty312/multi-agent-compliance-assistant" target="_blank" rel="noopener noreferrer">Multi-Agent Compliance Assistant</a>
+        </h2>
         <p>
-          A platform direction for replacing legacy review workflows with modular, AI-assisted systems that support
-          regulatory, business integrity, and product launch needs.
+          A whole team of AI agents reviewing compliance decisions so humans do not have to untangle every
+          policy, legal, enforcement, and audit question by hand.
         </p>
         <ul class="project-points">
-          <li>Designed around human-in-the-loop review, trust mechanisms, and measurable quality gates.</li>
-          <li>Focused on workflow orchestration, routing, ranking, and scalable platform adoption.</li>
-          <li>Connected product, engineering, legal, operations, and tooling stakeholders around a shared roadmap.</li>
+          <li>Coordinates legal, policy, enforcement, audit, and orchestrator agents for AI launch review.</li>
+          <li>Emphasizes evidence-bound findings, human review boundaries, and tamper-evident decision records.</li>
+          <li>Includes structured schemas, benchmark cases, retrieval foundations, and API-level validation.</li>
         </ul>
+        <a class="project-link" href="https://github.com/parislty312/multi-agent-compliance-assistant" target="_blank" rel="noopener noreferrer">
+          View on GitHub <i class="fa fa-github" aria-hidden="true"></i>
+        </a>
       </div>
     </article>
 
     <article class="project-card">
       <div class="project-meta">
-        <div class="project-index">02 / Monetization</div>
+        <div class="project-index">03 / Job Search</div>
         <div class="project-tags">
-          <span class="project-tag">Payments</span>
-          <span class="project-tag">Appeals</span>
-          <span class="project-tag">Integrity</span>
+          <span class="project-tag">Resume analysis</span>
+          <span class="project-tag">Matching</span>
+          <span class="project-tag">Memory</span>
         </div>
       </div>
       <div>
-        <h2>Monetization &amp; Payment Product Systems</h2>
+        <h2>
+          <a class="project-title-link" href="https://github.com/parislty312/bole-job-search-assistant" target="_blank" rel="noopener noreferrer">Bole Job Search Assistant</a>
+        </h2>
         <p>
-          Product systems for creator monetization, payment workflows, and customer-facing operations where reliability,
-          policy, and product experience need to move together.
+          Your tireless robot intern for job hunting: a tool that matches a candidate's real skill profile to roles
+          based on job description fit, not just title similarity.
         </p>
         <ul class="project-points">
-          <li>Worked across product design, backend systems, operational policy, and stakeholder alignment.</li>
-          <li>Built for clear customer communication when decisions, appeals, or payment flows become complex.</li>
-          <li>Balanced business outcomes with platform integrity and scalable operating processes.</li>
+          <li>Reads resumes and compares evidence against pasted job descriptions or company career pages.</li>
+          <li>Explains skill gaps, match scores, and action plans for stronger-fit opportunities.</li>
+          <li>Uses long-term memory patterns so saved, ignored, and applied roles can improve future matches.</li>
         </ul>
+        <a class="project-link" href="https://github.com/parislty312/bole-job-search-assistant" target="_blank" rel="noopener noreferrer">
+          View on GitHub <i class="fa fa-github" aria-hidden="true"></i>
+        </a>
       </div>
     </article>
 
     <article class="project-card">
       <div class="project-meta">
-        <div class="project-index">03 / Writing</div>
+        <div class="project-index">04 / Creative Build</div>
         <div class="project-tags">
-          <span class="project-tag">Jekyll</span>
-          <span class="project-tag">GitHub Pages</span>
-          <span class="project-tag">Technical writing</span>
+          <span class="project-tag">Interactive</span>
+          <span class="project-tag">Creative coding</span>
+          <span class="project-tag">Prototype</span>
         </div>
       </div>
       <div>
-        <h2>Personal Website &amp; Technical Blog</h2>
+        <h2>
+          <a class="project-title-link" href="https://github.com/parislty312/Magic-Xmas-Tree---Version-1" target="_blank" rel="noopener noreferrer">Magic Xmas Tree</a>
+        </h2>
         <p>
-          This site is a living portfolio for systems thinking, public writing, and personal context. It is built as
-          a GitHub Pages site with a custom visual identity and a growing technical blog.
+          Version 1 of a playful holiday experiment. Yes, there will be a Version 2.
         </p>
         <ul class="project-points">
-          <li>Customized navigation, homepage, About, Technical Blog, Life, and project pages.</li>
-          <li>Published long-form writing on AI agent orchestration and product strategy.</li>
-          <li>Designed with responsive layouts, accessible asset paths, and a lightweight static-site workflow.</li>
+          <li>A creative coding project for exploring interactive, seasonal product ideas.</li>
+          <li>Kept intentionally lightweight as an early prototype and personal build.</li>
+          <li>Included here as a reminder that good technical taste also needs room to play.</li>
         </ul>
-        <a class="project-link" href="{{ '/technical-blog/orchestrating-agent-teams.html' | relative_url }}">
-          Read the first technical post <i class="fa fa-long-arrow-right" aria-hidden="true"></i>
+        <a class="project-link" href="https://github.com/parislty312/Magic-Xmas-Tree---Version-1" target="_blank" rel="noopener noreferrer">
+          View on GitHub <i class="fa fa-github" aria-hidden="true"></i>
         </a>
       </div>
     </article>
