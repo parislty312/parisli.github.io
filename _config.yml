@@ -150,6 +150,7 @@ header_pages:
   - index.html
   - about.html
   - technical-blog.html
+  - projects.html
   - life.html
 
 # Page default value
