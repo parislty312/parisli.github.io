@@ -199,9 +199,18 @@ html[data-theme="dark"]  {
       ul {
         border-left: 1px solid #787878;
 
+        [class^="h-h"]::before {
+          background: #0d0f10;
+          border-color: #62c6c8;
+        }
+
         .active {
-          background-color: #2d2d2d;
-          border-left: 2px solid #aaa;
+          background-color: rgba(98, 198, 200, 0.13);
+
+          &::before {
+            background: #62c6c8;
+            border-color: #62c6c8;
+          }
         }
 
         a {
@@ -210,9 +219,9 @@ html[data-theme="dark"]  {
 
         a:hover {
           color: #fff !important;
+          background-color: rgba(98, 198, 200, 0.1);
         }
       }
     }
   }
 }
-
