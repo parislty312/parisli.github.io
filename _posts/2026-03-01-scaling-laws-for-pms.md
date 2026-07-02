@@ -2,7 +2,7 @@
 layout: post
 title: "What Scaling Laws Means for Product Managers"
 subtitle: "Why AI capability planning became more forecastable, and where product reality still pushes back."
-date: 2026-06-19 09:00:00 -0700
+date: 2026-03-01 09:00:00 -0800
 categories: [AI Product Strategy]
 tags: [AI Systems, Product Strategy, Scaling Laws]
 permalink: /technical-blog/scaling-laws-for-pms.html
