@@ -26,9 +26,11 @@
     var menuHTML = '';
     for (var i = 0; i < headings.length; i++) {
       var h = headings[i];
+      var headingLink = h.closest('.blog-post-card[href]');
+      var href = headingLink ? headingLink.getAttribute('href') : '#h-' + h.getAttribute('id');
       menuHTML += (
         '<li class="h-' + h.tagName.toLowerCase() + '">'
-        + '<a href="#h-' + h.getAttribute('id') + '">' + h.textContent + '</a></li>');
+        + '<a href="' + href + '">' + h.textContent + '</a></li>');
     }
 
     menuContent.innerHTML = '<ul>' + menuHTML + '</ul>';
@@ -98,6 +100,9 @@
         if (headingRect.top <= headerHeight) {
           var id = 'h-' + h.getAttribute('id');
           var a = menuContent.querySelector('a[href="#' + id  + '"]');
+          if (!a) {
+            continue;
+          }
           var curActive = a.parentNode;
           if (curActive) {
             curActive.classList.add('active');
